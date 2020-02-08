@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios'
 
 class Form extends React.Component {
   constructor() {
@@ -9,6 +10,8 @@ class Form extends React.Component {
       errorCode: "",
       errorDesc: ""
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = e => {
@@ -16,9 +19,21 @@ class Form extends React.Component {
     this.setState( { [e.target.name]: e.target.value } )
   };
 
+  async handleSubmit(e){
+      e.preventDefault()
+      const { date, time, errorCode, errorDesc } = this.state
+
+      const form = await axios.post('/api/form', {
+          date,
+          time,
+          errorCode,
+          errorDesc
+      })
+  }
+
   render() {
     return (
-      <form className="text-center">
+      <form className="text-center" onSubmit={this.handleSubmit}>
         <div className="form-group row jumbotron">
           <div className="col">
             <label htmlFor="date">Date </label>
@@ -66,7 +81,7 @@ class Form extends React.Component {
             />
           </div>
         </div>
-        <button type="submit" onClick={this.handleChange} className="btn btn-primary">
+        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">
           Submit
         </button>
       </form>
