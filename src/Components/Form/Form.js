@@ -13,28 +13,31 @@ class Form extends React.Component {
 
   handleChange = e => {
     e.preventDefault();
+    this.setState( { [e.target.name]: e.target.value } )
   };
 
   render() {
     return (
-      <form className="text-center" onSubmit={this.handleChange}>
+      <form className="text-center">
         <div className="form-group row jumbotron">
           <div className="col">
             <label htmlFor="date">Date </label>
             <input
               type="date"
-              name=""
+              name="date"
               id="date"
               className="form-control form-control-sm"
+              onChange={this.handleChange}
             />
           </div>
           <div className="col ml-2">
             <label htmlFor="time">Time </label>
             <input
               type="time"
-              name=""
+              name="time"
               id="time"
               className="form-control form-control-sm"
+              onChange={this.handleChange}
             />
           </div>
         </div>
@@ -43,9 +46,10 @@ class Form extends React.Component {
             <label htmlFor="error-code">Error Code</label>
             <input
               type="text"
-              name=""
+              name="errorCode"
               id="error-code"
               className="form-control form-control-sm"
+              onChange={this.handleChange}
             />
           </div>
         </div>
@@ -56,11 +60,13 @@ class Form extends React.Component {
               id="error-desc"
               className="form-control"
               placeholder="Error Description"
+              onChange={this.handleChange}
+              name="errorDesc"
               required
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" onClick={this.handleChange} className="btn btn-primary">
           Submit
         </button>
       </form>
