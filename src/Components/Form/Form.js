@@ -3,11 +3,17 @@ import React from 'react'
 class Form extends React.Component {
     constructor(){
         super()
+        this.state = {
+            date: '',
+            time: '',
+            errorCode: '',
+            errorDescription: ''
+        }
     }
 
     handleChange = (e) => {
         e.preventDefault()
-        console.log('Clicked')
+        
     }
 
     render(){
